@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navigation_screens/screens/screen2.dart';
+import 'package:navigation_screens/screens/loginscreen.dart'; // Import LoginScreen
 
 class Screen1 extends StatelessWidget {
   @override
@@ -121,7 +122,10 @@ class Screen1 extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 20.0),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, '/login');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                    );
                   },
                   child: RichText(
                     text: const TextSpan(

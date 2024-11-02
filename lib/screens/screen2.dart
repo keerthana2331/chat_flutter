@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navigation_screens/screens/screen3.dart';
 
 class Screen2 extends StatelessWidget {
   @override
@@ -42,7 +43,7 @@ class Screen2 extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            _buildChatList(),
+            buildChatList(context),
             const Center(child: Text('Status')),
             const Center(child: Text('Calls')),
           ],
@@ -56,24 +57,27 @@ class Screen2 extends StatelessWidget {
     );
   }
 
-  Widget _buildChatList() {
+  Widget buildChatList(BuildContext context) {
     return ListView(
       children: [
-        _buildChatItem(
+        buildChatItem(
+          context: context,
           avatar: 'assets/avatar1.png',
           name: 'Faza Dzikrulloh',
           message: 'Typing...',
           time: '14:30',
           isTyping: true,
         ),
-        _buildChatItem(
+        buildChatItem(
+          context: context,
           avatar: 'assets/avatar2.png',
           name: 'Hatypo Studio',
           message: 'Can you help me to do with new project...',
           time: '14:30',
           unreadCount: 2,
         ),
-        _buildChatItem(
+        buildChatItem(
+          context: context,
           avatar: 'assets/avatar3.png',
           name: 'Zhofran A',
           message: 'I think we should upgrade the social media...',
@@ -83,7 +87,8 @@ class Screen2 extends StatelessWidget {
     );
   }
 
-  Widget _buildChatItem({
+  Widget buildChatItem({
+    required BuildContext context,
     required String avatar,
     required String name,
     required String message,
@@ -136,7 +141,14 @@ class Screen2 extends StatelessWidget {
             ),
         ],
       ),
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Screen3(contactName: name),
+          ),
+        );
+      },
     );
   }
 }
