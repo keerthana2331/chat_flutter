@@ -127,7 +127,7 @@ class Screen1 extends StatelessWidget {
                     'Already have an account? Login',
                     style: TextStyle(
                       color: Color(0xFFFF6B00),
-                      decoration: TextDecoration.underline,
+                  
                     ),
                   ),
                 ),
