@@ -22,8 +22,7 @@ class ChatScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: const CircleAvatar(
-          backgroundImage: AssetImage(
-              'assets/avatar.png'), // Placeholder for user profile image
+          backgroundImage: AssetImage('assets/avatar.png'),
         ),
         title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,7 +125,7 @@ class ChatBubble extends StatelessWidget {
               margin: const EdgeInsets.only(bottom: 8),
               width: 200,
               height: 150,
-              color: Colors.grey[300], // Placeholder for the image
+              color: Colors.grey[300],
               child: const Center(child: Text('Image Placeholder')),
             ),
           Container(

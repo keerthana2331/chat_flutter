@@ -79,7 +79,6 @@ class Screen2 extends StatelessWidget {
           message: 'I think we should upgrade the social media...',
           time: '14:00',
         ),
-        // Add more chat items as needed
       ],
     );
   }

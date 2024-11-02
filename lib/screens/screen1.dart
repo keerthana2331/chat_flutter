@@ -11,7 +11,6 @@ class Screen1 extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Display new avatar image
                 Image.asset(
                   'assets/images/front.png',
                   width: 400,
@@ -22,51 +21,62 @@ class Screen1 extends StatelessWidget {
                   'Welcome to\nHalodek',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 50,
+                    fontSize: 45,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                    color: Color.fromARGB(255, 55, 53, 53),
                   ),
                 ),
                 const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 32.0),
                   child: Text(
                     'Halodek supports sending and receiving a variety of media: text, photos, videos, documents, and location, as well as voice calls.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey[700],
+                      fontSize: 15,
+                      fontWeight: FontWeight.w700,
+                      color: Color.fromARGB(255, 157, 153, 153),
                     ),
                   ),
                 ),
                 const SizedBox(height: 40),
-                // Updated Get Started button with squared corners
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => Screen2()),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFFF6B00),
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(8), // More squared corners
-                        ),
-                        padding: const EdgeInsets.symmetric(vertical: 15),
-                        elevation: 0, // Removed shadow
+                    child: Container(
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color(0xFFFF6B00).withOpacity(0.5),
+                            spreadRadius: 0,
+                            blurRadius: 20,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
                       ),
-                      child: const Text(
-                        "Let's Get Started",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => Screen2()),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFFF6B00),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 30),
+                          elevation: 0,
+                        ),
+                        child: const Text(
+                          "Let's Get Started",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
@@ -81,34 +91,24 @@ class Screen1 extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color(0xFFFF6B00).withOpacity(0.2),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
+                    borderRadius: BorderRadius.circular(60),
                   ),
                   child: TextButton(
-                    onPressed: () {
-                      // Add your skip button logic here
-                    },
+                    onPressed: () {},
                     style: TextButton.styleFrom(
-                      backgroundColor: const Color(0xFFFFF5EE),
+                      backgroundColor: const Color.fromARGB(255, 241, 230, 219),
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 8),
+                          horizontal: 30, vertical: 15),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(30),
                       ),
                     ),
                     child: const Text(
                       'Skip',
                       style: TextStyle(
-                        color: Color(0xFFFF6B00),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                        color: Color.fromARGB(255, 204, 100, 27),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
@@ -123,11 +123,23 @@ class Screen1 extends StatelessWidget {
                   onTap: () {
                     Navigator.pushNamed(context, '/login');
                   },
-                  child: const Text(
-                    'Already have an account? Login',
-                    style: TextStyle(
-                      color: Color(0xFFFF6B00),
-                  
+                  child: RichText(
+                    text: const TextSpan(
+                      text: 'Already have an account? ',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: Color.fromARGB(255, 138, 137, 137),
+                      ),
+                      children: [
+                        TextSpan(
+                          text: 'Login',
+                          style: TextStyle(
+                            color: Color.fromARGB(243, 214, 96, 12),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
