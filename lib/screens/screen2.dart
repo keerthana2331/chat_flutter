@@ -239,9 +239,9 @@ class Screen2 extends StatelessWidget {
           ),
           onTap: () => Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (context) => ChatScreen(contactName: item.name),
-            ),
+          MaterialPageRoute(
+            builder: (context) => ChatScreen(contactName: item.name), // Corrected "contactName"
+          ),
           ),
         );
       },
