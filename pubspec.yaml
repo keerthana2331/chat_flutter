@@ -30,4 +30,5 @@ flutter:
 
   assets:
     - assets/images/front.png
-
+    - assets/images/secondcreen.first.png
+    - assets/images/third screen.image.png

@@ -25,7 +25,7 @@ class Screen2 extends StatelessWidget {
   final List<ChatListItem> chatItems = [
     ChatListItem(
       name: "Faza Dzikrulloh",
-      avatar: "assets/images/avatar1.png",
+      avatar: "assets/images/secondcreen.first.png",
       message: "Typing...",
       time: "14.30",
       isTyping: true,
@@ -92,7 +92,7 @@ class Screen2 extends StatelessWidget {
           title: const Text(
             'HALODEK',
             style: TextStyle(
-              color: Color.fromARGB(255, 239, 115, 21),
+              color: Color.fromARGB(255, 238, 110, 36),
               fontWeight: FontWeight.bold,
               fontSize: 24,
             ),
@@ -110,29 +110,34 @@ class Screen2 extends StatelessWidget {
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(56),
             child: Container(
-              alignment: Alignment.center,
-              margin: const EdgeInsets.symmetric(horizontal: 16),
-              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
-              decoration: BoxDecoration(
-                color: Colors.orange[50],
-                borderRadius: BorderRadius.circular(25),
-              ),
-              child: TabBar(
-                labelColor: Colors.white,
-                unselectedLabelColor: Colors.orange,
-                indicator: BoxDecoration(
-                  color: Colors.orange,
-                  borderRadius: BorderRadius.circular(25),
+                alignment: Alignment.center,
+                margin: const EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 239, 220, 209),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                indicatorPadding: EdgeInsets.symmetric(horizontal: 4),
-                labelPadding: const EdgeInsets.symmetric(horizontal: 12.0),
-                tabs: const [
-                  Tab(text: 'Chat'),
-                  Tab(text: 'Status'),
-                  Tab(text: 'Calls'),
-                ],
-              ),
-            ),
+                child: TabBar(
+                  indicator: BoxDecoration(
+                    color: const Color(0xFFFF6F2E),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  labelColor: Colors.white,
+                  unselectedLabelColor: const Color(0xFFFF6F2E),
+                  indicatorPadding: const EdgeInsets.symmetric(
+                    horizontal: -48,
+                    vertical: 2,
+                  ),
+                  labelPadding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 3,
+                  ),
+                  tabs: const [
+                    Tab(text: 'Chat'),
+                    Tab(text: 'Status'),
+                    Tab(text: 'Calls'),
+                  ],
+                )),
           ),
         ),
         body: TabBarView(

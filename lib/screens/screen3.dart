@@ -29,7 +29,7 @@ class ChatScreenState extends State<ChatScreen> {
       text: "Here it is! hope you like it!",
       time: "14:25",
       isMe: false,
-      image: "assets/screenshot.jpg",
+      image: "assets/images/third screen.image.png",
     ),
     const Message(
       text: "Great work! lets schedule it tomorrow",
@@ -53,9 +53,9 @@ class ChatScreenState extends State<ChatScreen> {
           children: [
             buildAppBar(),
             Expanded(
-              child: _buildMessageList(),
+              child: buildMessageList(),
             ),
-            _buildInputArea(),
+            buildInputArea(),
           ],
         ),
       ),
@@ -81,7 +81,7 @@ class ChatScreenState extends State<ChatScreen> {
           ),
           const CircleAvatar(
             radius: 20,
-            backgroundImage: AssetImage('assets/profile.jpg'),
+            backgroundImage: AssetImage('assets/images/secondcreen.first.png'),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -99,7 +99,7 @@ class ChatScreenState extends State<ChatScreen> {
                   'Typing...',
                   style: TextStyle(
                     fontSize: 13,
-                    color: Colors.orange,
+                    color: Color.fromARGB(255, 170, 84, 3),
                   ),
                 ),
               ],
@@ -122,7 +122,7 @@ class ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  Widget _buildMessageList() {
+  Widget buildMessageList() {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
@@ -130,25 +130,25 @@ class ChatScreenState extends State<ChatScreen> {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
             decoration: BoxDecoration(
-              color: Colors.orange.shade50,
+              color: const Color.fromARGB(255, 247, 234, 222),
               borderRadius: BorderRadius.circular(20),
             ),
             child: const Text(
               'Today',
               style: TextStyle(
-                color: Colors.orange,
+                color: Color.fromARGB(255, 255, 115, 0),
                 fontWeight: FontWeight.w600,
               ),
             ),
           ),
         ),
         const SizedBox(height: 16),
-        ...messages.map((message) => _buildMessageItem(message)).toList(),
+        ...messages.map((message) => buildMessageItem(message)).toList(),
       ],
     );
   }
 
-  Widget _buildMessageItem(Message message) {
+  Widget buildMessageItem(Message message) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       child: Column(
@@ -212,13 +212,13 @@ class ChatScreenState extends State<ChatScreen> {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  _buildReactionButton('👍'),
+                  buildReactionButton('👍'),
                   const SizedBox(width: 16),
-                  _buildReactionButton('❤️'),
+                  buildReactionButton('❤️'),
                   const SizedBox(width: 16),
-                  _buildReactionButton('🔥'),
+                  buildReactionButton('🔥'),
                   const SizedBox(width: 16),
-                  _buildReactionButton('+'),
+                  buildReactionButton('+'),
                 ],
               ),
             ),
@@ -228,7 +228,7 @@ class ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  Widget _buildReactionButton(String emoji) {
+  Widget buildReactionButton(String emoji) {
     return GestureDetector(
       onTap: () {},
       child: Text(
@@ -238,72 +238,70 @@ class ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  Widget _buildInputArea() {
+  Widget buildInputArea() {
     return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border(
-          top: BorderSide(color: Colors.grey.shade200),
-        ),
-      ),
-      child: Row(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.grey.shade100,
-              shape: BoxShape.circle,
-            ),
-            child: IconButton(
-              icon: const Icon(Icons.emoji_emotions_outlined),
-              color: Colors.grey.shade600,
-              onPressed: () {},
-            ),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border(
+            top: BorderSide(color: Colors.grey.shade200),
           ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: TextField(
-              controller: messageController,
-              decoration: InputDecoration(
-                hintText: 'Type a message',
-                hintStyle: const TextStyle(color: Colors.grey),
-                filled: true,
-                fillColor: Colors.grey.shade100,
-                contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(25),
-                  borderSide: BorderSide.none,
+        ),
+        child: Row(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.grey.shade200,
+              ),
+              child: IconButton(
+                icon: const Icon(Icons.emoji_emotions_outlined),
+                color: Colors.grey.shade600,
+                onPressed: () {},
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: TextField(
+                controller: messageController,
+                decoration: InputDecoration(
+                  hintText: 'Type a message',
+                  hintStyle: const TextStyle(color: Colors.grey),
+                  filled: true,
+                  fillColor: Colors.grey.shade200,
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25),
+                    borderSide: BorderSide.none,
+                  ),
                 ),
               ),
             ),
-          ),
-          const SizedBox(width: 8),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.grey.shade100,
-              shape: BoxShape.circle,
+            const SizedBox(width: 12),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.grey.shade200,
+              ),
+              child: IconButton(
+                icon: const Icon(Icons.attach_file),
+                color: Colors.grey.shade600,
+                onPressed: () {},
+              ),
             ),
-            child: IconButton(
-              icon: const Icon(Icons.attach_file),
-              color: Colors.grey.shade600,
-              onPressed: () {},
+            const SizedBox(width: 12),
+            Container(
+              decoration: const BoxDecoration(
+                color: Color(0xFFFFEDE1),
+                shape: BoxShape.circle,
+              ),
+              padding: const EdgeInsets.all(8),
+              child: const Icon(
+                Icons.send,
+                color: Color(0xFFFF6F2E),
+              ),
             ),
-          ),
-          const SizedBox(width: 8),
-          Container(
-            decoration: const BoxDecoration(
-              color: Colors.orange,
-              shape: BoxShape.circle,
-            ),
-            child: IconButton(
-              icon: const Icon(Icons.send),
-              color: Colors.white,
-              onPressed: () {},
-            ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ));
   }
 
   @override
