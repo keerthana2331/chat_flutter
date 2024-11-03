@@ -92,37 +92,40 @@ class Screen2 extends StatelessWidget {
           title: const Text(
             'HALODEK',
             style: TextStyle(
-              color: Colors.orange,
+              color: Color.fromARGB(255, 239, 115, 21),
               fontWeight: FontWeight.bold,
               fontSize: 24,
             ),
           ),
           actions: [
             IconButton(
-              icon: Icon(Icons.search, color: Colors.grey[700]),
+              icon: Icon(Icons.search, color: Colors.grey[700], size: 24),
               onPressed: () {},
             ),
             IconButton(
-              icon: Icon(Icons.more_vert, color: Colors.grey[700]),
+              icon: Icon(Icons.more_vert, color: Colors.grey[700], size: 24),
               onPressed: () {},
             ),
           ],
           bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(48),
+            preferredSize: const Size.fromHeight(56),
             child: Container(
+              alignment: Alignment.center,
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
               decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(color: Colors.grey[200]!, width: 1),
-                ),
+                color: Colors.orange[50],
+                borderRadius: BorderRadius.circular(25),
               ),
               child: TabBar(
                 labelColor: Colors.white,
-                unselectedLabelColor: Colors.orange[300],
+                unselectedLabelColor: Colors.orange,
                 indicator: BoxDecoration(
                   color: Colors.orange,
                   borderRadius: BorderRadius.circular(25),
                 ),
-                indicatorPadding: const EdgeInsets.all(8),
+                indicatorPadding: EdgeInsets.symmetric(horizontal: 4),
+                labelPadding: const EdgeInsets.symmetric(horizontal: 12.0),
                 tabs: const [
                   Tab(text: 'Chat'),
                   Tab(text: 'Status'),
@@ -239,9 +242,9 @@ class Screen2 extends StatelessWidget {
           ),
           onTap: () => Navigator.push(
             context,
-          MaterialPageRoute(
-            builder: (context) => ChatScreen(contactName: item.name), // Corrected "contactName"
-          ),
+            MaterialPageRoute(
+              builder: (context) => ChatScreen(contactName: item.name),
+            ),
           ),
         );
       },
