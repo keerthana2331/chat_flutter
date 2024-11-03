@@ -260,7 +260,7 @@ class ChatScreenState extends State<ChatScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: const Color(0xFFFF6F2E),
+        color: const Color.fromARGB(255, 234, 82, 12),
         borderRadius: BorderRadius.circular(25),
         border: Border.all(color: Colors.white, width: 2),
       ),
@@ -287,8 +287,8 @@ class ChatScreenState extends State<ChatScreen> {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          border: Border.all(color: Colors.white, width: 2),
-          borderRadius: BorderRadius.circular(25),
+          border: Border.all(color: Colors.white, width: 4),
+          borderRadius: BorderRadius.circular(40),
         ),
         padding: const EdgeInsets.all(12),
         child: Center(
