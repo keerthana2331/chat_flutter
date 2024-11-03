@@ -26,10 +26,9 @@ class ChatScreenState extends State<ChatScreen> {
       isMe: true,
     ),
     const Message(
-      text: "Here it is! hope you like it!",
+      image: "assets/images/third screen.image.png",
       time: "14:25",
       isMe: false,
-      image: "assets/images/third screen.image.png",
     ),
     const Message(
       text: "Great work! lets schedule it tomorrow",
@@ -64,29 +63,32 @@ class ChatScreenState extends State<ChatScreen> {
 
   Widget buildAppBar() {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border(
-          bottom: BorderSide(color: Colors.grey.shade200),
+          bottom: BorderSide(color: Colors.grey.shade100),
         ),
       ),
       child: Row(
         children: [
           IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.black54),
-            onPressed: () {
-              Navigator.pop(context);
-            },
+            icon: const Icon(Icons.arrow_back_ios,
+                color: Colors.black54, size: 20),
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(),
+            onPressed: () => Navigator.pop(context),
           ),
+          const SizedBox(width: 12),
           const CircleAvatar(
-            radius: 20,
+            radius: 16,
             backgroundImage: AssetImage('assets/images/secondcreen.first.png'),
           ),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   widget.contactName,
@@ -99,7 +101,7 @@ class ChatScreenState extends State<ChatScreen> {
                   'Typing...',
                   style: TextStyle(
                     fontSize: 13,
-                    color: Color.fromARGB(255, 170, 84, 3),
+                    color: Color(0xFFFF6F2E),
                   ),
                 ),
               ],
@@ -130,13 +132,13 @@ class ChatScreenState extends State<ChatScreen> {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
             decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 247, 234, 222),
+              color: const Color(0xFFFFEDE1),
               borderRadius: BorderRadius.circular(20),
             ),
             child: const Text(
               'Today',
               style: TextStyle(
-                color: Color.fromARGB(255, 255, 115, 0),
+                color: Color(0xFFFF6F2E),
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -149,159 +151,183 @@ class ChatScreenState extends State<ChatScreen> {
   }
 
   Widget buildMessageItem(Message message) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
       child: Column(
         crossAxisAlignment:
             message.isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
-          Container(
-            constraints: BoxConstraints(
-              maxWidth: MediaQuery.of(context).size.width * 0.75,
-            ),
-            decoration: BoxDecoration(
-              color: message.isMe ? Colors.orange : Colors.grey.shade100,
-              borderRadius: BorderRadius.only(
-                topLeft: const Radius.circular(20),
-                topRight: const Radius.circular(20),
-                bottomLeft: Radius.circular(message.isMe ? 20 : 0),
-                bottomRight: Radius.circular(message.isMe ? 0 : 20),
-              ),
-            ),
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  message.text,
-                  style: TextStyle(
-                    color: message.isMe ? Colors.white : Colors.black,
-                    fontSize: 15,
+          Row(
+            mainAxisAlignment:
+                message.isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Container(
+                constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width * 0.75,
+                ),
+                decoration: BoxDecoration(
+                  color: message.isMe
+                      ? const Color(0xFFFF6F2E)
+                      : Colors.grey.shade100,
+                  borderRadius: BorderRadius.only(
+                    topLeft: const Radius.circular(20),
+                    topRight: const Radius.circular(20),
+                    bottomLeft: Radius.circular(message.isMe ? 20 : 0),
+                    bottomRight: Radius.circular(message.isMe ? 0 : 20),
                   ),
                 ),
-                if (message.image != null) ...[
-                  const SizedBox(height: 8),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Image.asset(
-                      message.image!,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 12, 12, 6),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (message.text != null)
+                            Text(
+                              message.text!,
+                              style: TextStyle(
+                                color:
+                                    message.isMe ? Colors.white : Colors.black,
+                                fontSize: 15,
+                              ),
+                            ),
+                          if (message.image != null) ...[
+                            if (message.text != null) const SizedBox(height: 8),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.asset(
+                                message.image!,
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ],
+                        ],
+                      ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 12, bottom: 6),
+                      child: Text(
+                        message.time,
+                        style: TextStyle(
+                          color: message.isMe ? Colors.white70 : Colors.grey,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              if (message.showReactions) ...[
+                const SizedBox(width: 8),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFFF6F2E),
+                    borderRadius: BorderRadius.circular(25),
                   ),
-                ],
-                const SizedBox(height: 4),
-                Text(
-                  message.time,
-                  style: TextStyle(
-                    color: message.isMe ? Colors.white70 : Colors.grey,
-                    fontSize: 12,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      buildReactionButton('👍'),
+                      const SizedBox(width: 12),
+                      buildReactionButton('❤️'),
+                      const SizedBox(width: 12),
+                      buildReactionButton('🔥'),
+                      const SizedBox(width: 12),
+                      buildReactionButton('+', isText: true),
+                    ],
                   ),
                 ),
               ],
-            ),
+            ],
           ),
-          if (message.showReactions) ...[
-            const SizedBox(height: 8),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              decoration: BoxDecoration(
-                color: Colors.orange,
-                borderRadius: BorderRadius.circular(25),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  buildReactionButton('👍'),
-                  const SizedBox(width: 16),
-                  buildReactionButton('❤️'),
-                  const SizedBox(width: 16),
-                  buildReactionButton('🔥'),
-                  const SizedBox(width: 16),
-                  buildReactionButton('+'),
-                ],
-              ),
-            ),
-          ],
         ],
       ),
     );
   }
 
-  Widget buildReactionButton(String emoji) {
+  Widget buildReactionButton(String emoji, {bool isText = false}) {
     return GestureDetector(
       onTap: () {},
       child: Text(
         emoji,
-        style: const TextStyle(fontSize: 20),
+        style: TextStyle(
+          fontSize: isText ? 18 : 20,
+          color: isText ? Colors.white : null,
+        ),
       ),
     );
   }
 
   Widget buildInputArea() {
     return Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border(
-            top: BorderSide(color: Colors.grey.shade200),
-          ),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border(
+          top: BorderSide(color: Colors.grey.shade100),
         ),
-        child: Row(
-          children: [
-            Container(
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
               decoration: BoxDecoration(
-                color: Colors.grey.shade200,
+                color: Colors.grey.shade100,
+                borderRadius: BorderRadius.circular(25),
               ),
-              child: IconButton(
-                icon: const Icon(Icons.emoji_emotions_outlined),
-                color: Colors.grey.shade600,
-                onPressed: () {},
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: TextField(
-                controller: messageController,
-                decoration: InputDecoration(
-                  hintText: 'Type a message',
-                  hintStyle: const TextStyle(color: Colors.grey),
-                  filled: true,
-                  fillColor: Colors.grey.shade200,
-                  contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25),
-                    borderSide: BorderSide.none,
+              child: Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.emoji_emotions_outlined),
+                    color: Colors.grey.shade600,
+                    onPressed: () {},
                   ),
-                ),
+                  Expanded(
+                    child: TextField(
+                      controller: messageController,
+                      decoration: InputDecoration(
+                        hintText: 'Type a message',
+                        hintStyle: TextStyle(color: Colors.grey.shade500),
+                        border: InputBorder.none,
+                        contentPadding:
+                            const EdgeInsets.symmetric(vertical: 10),
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.image_outlined),
+                    color: Colors.grey.shade600,
+                    onPressed: () {},
+                  ),
+                ],
               ),
             ),
-            const SizedBox(width: 12),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.grey.shade200,
-              ),
-              child: IconButton(
-                icon: const Icon(Icons.attach_file),
-                color: Colors.grey.shade600,
-                onPressed: () {},
-              ),
+          ),
+          const SizedBox(width: 12),
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: const BoxDecoration(
+              color: Color(0xFFFFEDE1),
+              shape: BoxShape.circle,
             ),
-            const SizedBox(width: 12),
-            Container(
-              decoration: const BoxDecoration(
-                color: Color(0xFFFFEDE1),
-                shape: BoxShape.circle,
-              ),
-              padding: const EdgeInsets.all(8),
+            child: Transform.rotate(
+              angle: -0.5,
               child: const Icon(
                 Icons.send,
                 color: Color(0xFFFF6F2E),
+                size: 20,
               ),
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -312,14 +338,14 @@ class ChatScreenState extends State<ChatScreen> {
 }
 
 class Message {
-  final String text;
+  final String? text;
   final String time;
   final bool isMe;
   final String? image;
   final bool showReactions;
 
   const Message({
-    required this.text,
+    this.text,
     required this.time,
     required this.isMe,
     this.image,
