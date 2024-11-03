@@ -82,7 +82,7 @@ class ChatScreenState extends State<ChatScreen> {
           const SizedBox(width: 12),
           const CircleAvatar(
             radius: 16,
-            backgroundImage: AssetImage('assets/images/secondcreen.first.png'),
+            backgroundImage: AssetImage('assets/images/avatar1.png'),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -100,8 +100,9 @@ class ChatScreenState extends State<ChatScreen> {
                 const Text(
                   'Typing...',
                   style: TextStyle(
-                    fontSize: 13,
-                    color: Color(0xFFFF6F2E),
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 232, 96, 32),
                   ),
                 ),
               ],
@@ -138,8 +139,8 @@ class ChatScreenState extends State<ChatScreen> {
             child: const Text(
               'Today',
               style: TextStyle(
-                color: Color(0xFFFF6F2E),
-                fontWeight: FontWeight.w600,
+                color: Color.fromARGB(255, 232, 87, 20),
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
